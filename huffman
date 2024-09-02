@@ -1,0 +1,40 @@
+data="""IIKJIKLKIKKJKILNIPIKKIIOPIJKMPJLJLLKKKKIIMKKJJLJJPIOPKIINMI
+MLPKNJLIJKLPOIMLJLPILIKLPKIKJPIOLPNIKPKKKLKPKKKPPKIIIKJLJII
+LLKJJIKNPMLPMIOPPKKJIPJIJNIKLNOOONIPKLMKIJPNOMPPLIKLIILLKLK
+IKKNLMIIKKIKJIIKKNLONKIMPKKIPKKJLOPPIJKKKKIJPLLJLLIIPJJKKNN
+KMIKKNPJJKIKKMKKINILKNNKKJLLILNOKJPNNJKLJLLPMNLOLMPLLIKNIOI
+MNNIILMKKKKIIMNIKJILNKLMLKLJLLPMNLOLMPLLIKNIOIMNNIILMKKKKII
+MNIKJILNKLML"""
+
+from collections import Counter
+
+# Remove newline characters from the data
+filtered_data = data.replace('\n', '')
+
+# Create a Counter object to count the frequency of each character
+counter = Counter(filtered_data)
+
+# Convert the Counter to a dictionary named 'd'
+d = dict(counter)
+
+# Print the resulting dictionary
+print(d)
+
+
+
+def huffman():
+    while len(d)>1:
+        min_key = min(d, key=d.get)
+        min_val=d[min_key]
+        print("The first least frequent letter is:", min_key+" : "+ str(min_val))
+        del d[min_key]
+        min_key2 = min(d, key=d.get)
+        min_val2=d[min_key2]
+        print("The first least frequent letter is:", min_key2+" :"+ str(min_val2))
+        del d[min_key2]
+        d[min_key+min_key2]=min_val+min_val2
+        print(d)
+        print("\n")
+
+
+huffman()
